@@ -145,3 +145,7 @@ export const AuthorProfileImage = css`
   width: 60px;
   height: 60px;
 `;
+
+export const emptySpaceForBlogPage = css`
+  margin: 10vw 4vw;
+`;
