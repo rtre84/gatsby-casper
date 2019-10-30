@@ -1,4 +1,4 @@
-Forked and modified from https://github.com/scttcper/gatsby-casper
+Forked and modified from https://github.com/scttcper/gatsby-casper  
 All commits are still attributed to their original authors.
 
 # gatsby-casper
