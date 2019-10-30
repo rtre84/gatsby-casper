@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "outDir": "./build/",
+    "baseUrl": "./",
+    "listFiles": true,
+    "sourceMap": true,
     "module": "commonjs",
     "target": "esnext",
     "jsx": "preserve",
@@ -10,7 +14,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "allowJs": false
   },
   "include": ["./src/**/*"]
 }

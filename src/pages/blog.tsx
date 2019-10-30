@@ -15,11 +15,8 @@ import {
   outer,
   PostFeed,
   PostFeedRaise,
-  SiteDescription,
   SiteHeader,
-  SiteHeaderContent,
   SiteMain,
-  SiteTitle,
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
 

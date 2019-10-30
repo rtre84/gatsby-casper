@@ -79,5 +79,7 @@ module.exports = {
         siteSpeedSampleRate: 10,
       },
     },
+    // Should be removed before pushing to production
+    // 'gatsby-plugin-debug-build'
   ],
 };
