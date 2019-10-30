@@ -3,6 +3,8 @@ All commits are still attributed to their original authors.
 
 # gatsby-casper
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5dab7d366a4e40b68fc4e2856b079a22)](https://www.codacy.com/manual/rtre84/gatsby-ghost-anupvasudevancom?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ServingNiches/gatsby-ghost-anupvasudevancom&amp;utm_campaign=Badge_Grade)
+
 Original Demo: https://gatsby-casper.netlify.com/  
 Demo for this repo: https://frosty-poincare-454ca8.netlify.com/
 
