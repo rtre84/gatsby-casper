@@ -1,67 +1,103 @@
-import IndexLayout from '../layouts';
-import Wrapper from '../components/Wrapper';
-import SiteNav from '../components/header/SiteNav';
-import { SiteHeader, outer, inner, SiteMain } from '../styles/shared';
-import * as React from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+
 import { css } from '@emotion/core';
 
-import { PostFullHeader, PostFullTitle, NoImage, PostFull } from '../templates/post';
+import { Footer } from '../components/Footer';
+import SiteNav from '../components/header/SiteNav';
 import { PostFullContent } from '../components/PostContent';
-import Footer from '../components/Footer';
-import Helmet from 'react-helmet';
+import { Wrapper } from '../components/Wrapper';
+import IndexLayout from '../layouts';
+import {
+  inner,
+  outer,
+  SiteArchiveHeader,
+  SiteHeader,
+  SiteMain,
+  SiteNavMain,
+} from '../styles/shared';
+import { NoImage, PostFull, PostFullHeader, PostFullTitle } from '../templates/post';
+import { colors } from '../styles/colors';
 
 const PageTemplate = css`
   .site-main {
-    background: #fff;
+    margin-top: 64px;
     padding-bottom: 4vw;
+    background: #fff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .site-main {
+      /* background: var(--darkmode); */
+      background: ${colors.darkmode};
+    }
   }
 `;
 
-
-const About: React.FunctionComponent = () => (
+const About: React.FC = () => (
   <IndexLayout>
     <Helmet>
       <title>About</title>
     </Helmet>
     <Wrapper css={PageTemplate}>
-      <header css={[outer, SiteHeader]}>
-        <div css={inner}>
-          <SiteNav />
+      <header className="site-archive-header no-image" css={[SiteHeader, SiteArchiveHeader]}>
+        <div css={[outer, SiteNavMain]}>
+          <div css={inner}>
+            <SiteNav isHome={false} />
+          </div>
         </div>
       </header>
       <main id="site-main" className="site-main" css={[SiteMain, outer]}>
-        <article className="post page" css={[PostFull, NoImage]}>
-          <PostFullHeader>
-            <PostFullTitle>About</PostFullTitle>
-          </PostFullHeader>
+        <div css={inner}>
+          <article className="post page" css={[PostFull, NoImage]}>
+            <PostFullHeader className="post-full-header">
+              <PostFullTitle className="post-full-title">About</PostFullTitle>
+            </PostFullHeader>
 
-          <PostFullContent className="post-full-content">
-            <div className="post-content">
-              <p>
-                Ghost is professional publishing platform designed for modern journalism. This is a
-                demo site of a basic Ghost install to give you a general sense of what a new Ghost
-                site looks like when set up for the first time.
-              </p>
-              <blockquote>
+            <PostFullContent className="post-full-content">
+              <div className="post-content">
+                <h5>
+                  A starter template for Gatsby <br /> GitHub: <a href="https://github.com/scttcper/gatsby-casper">scttcper/gatsby-casper</a>
+                </h5>
                 <p>
-                  If you'd like to set up a site like this for yourself, head over to{' '}
-                  <a href="https://ghost.org">Ghost.org</a> and start a free 14 day trial to give
-                  Ghost a try!
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo finibus leo,
+                  non tempus magna vehicula ac. Maecenas mollis ante finibus pharetra imperdiet.
+                  Maecenas in aliquam purus. Nam et massa a nulla fermentum dapibus sit amet in
+                  neque. Ut ipsum ipsum, rhoncus a sodales pellentesque, interdum a elit. Nullam
+                  aliquam tellus nibh, eget laoreet dui aliquet non. Vestibulum malesuada ante at
+                  diam tempus, ac interdum risus scelerisque. Sed ipsum neque, vulputate porta diam
+                  eget, consequat blandit nulla. Integer volutpat velit vitae purus lacinia aliquam.
+                  Integer bibendum ipsum vitae magna pulvinar, nec vehicula dolor vulputate. Nulla
+                  eu massa id orci placerat finibus vel sit amet eros. Vestibulum quis consequat
+                  massa. Sed sagittis sollicitudin massa at commodo. Praesent diam nisi, imperdiet
+                  posuere eleifend nec, blandit ac massa.
                 </p>
-              </blockquote>
-              <p>
-                If you're a developer: Ghost is a completely open source (MIT) Node.js application
-                built on a JSON API with an Ember.js admin client. It works with MySQL and SQLite,
-                and is publicly available <a href="https://github.com/TryGhost/ghost">on Github</a>.
-              </p>
-              <p>
-                If you need help with using Ghost, you'll find a ton of useful articles on{' '}
-                <a href="https://help.ghost.org">our knowledgebase</a>, as well as extensive{' '}
-                <a href="https://docs.ghost.org">developer documentation</a>.
-              </p>
-            </div>
-          </PostFullContent>
-        </article>
+                <p>
+                  Vestibulum semper pretium ipsum nec congue. Ut ac eros nisi. Donec leo sem,
+                  aliquam mollis sapien ultrices, dapibus congue diam. Proin viverra dapibus
+                  blandit. Ut mauris tellus, tristique id felis vel, venenatis vestibulum nunc. Nam
+                  molestie pulvinar nibh, eget egestas augue. Maecenas tellus arcu, mattis ut ipsum
+                  non, sollicitudin convallis nunc. Donec nec neque tristique, aliquet lacus id,
+                  laoreet nunc. Cras dapibus nisi nulla, ullamcorper faucibus neque suscipit ac.
+                  Donec eget orci venenatis justo lobortis volutpat. Proin vel placerat nisl.
+                  Integer arcu nunc, sodales eu fringilla non, aliquam non diam. Cras placerat,
+                  massa et faucibus pretium, ante elit tincidunt tellus, tristique ultricies velit
+                  quam et massa.
+                </p>
+                <p>
+                  In nunc lacus, dapibus vitae lacus sit amet, efficitur iaculis neque. Suspendisse
+                  ut tellus quis leo vestibulum tincidunt. Aenean nec enim ac dolor lacinia semper.
+                  Ut sed laoreet libero. Nunc elementum sollicitudin accumsan. Nunc eu augue neque.
+                  Proin a tortor nibh. Cras eu nisl ornare sapien feugiat pellentesque. Mauris
+                  dignissim vel quam eu pellentesque. Integer sit amet posuere quam, eu ullamcorper
+                  odio. Nullam a lacus tempus sapien dignissim ullamcorper. In hac habitasse platea
+                  dictumst. Proin quis massa aliquam, feugiat tortor sit amet, tincidunt urna. Donec
+                  posuere pulvinar lectus, ac semper ipsum vulputate quis.
+                </p>
+              </div>
+            </PostFullContent>
+          </article>
+        </div>
       </main>
       <Footer />
     </Wrapper>

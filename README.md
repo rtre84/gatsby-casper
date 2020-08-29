@@ -1,21 +1,36 @@
-Forked and modified from https://github.com/scttcper/gatsby-casper  
+Forked and modified from https://github.com/scttcper/gatsby-casper
 All commits are still attributed to their original authors.
 
 # gatsby-casper
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5dab7d366a4e40b68fc4e2856b079a22)](https://www.codacy.com/manual/rtre84/gatsby-ghost-anupvasudevancom?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ServingNiches/gatsby-ghost-anupvasudevancom&amp;utm_campaign=Badge_Grade)
 
-Original Demo: https://gatsby-casper.netlify.com/  
+Original Demo: https://gatsby-casper.netlify.com/
 Demo for this repo: https://frosty-poincare-454ca8.netlify.com/
 
-This is a static blog generator and starter gatsby repo. A port of [Casper](https://github.com/TryGhost/Casper) v2 a theme from [Ghost](https://ghost.org/) for [GatsbyJS](https://www.gatsbyjs.org/) using [TypeScript](https://www.typescriptlang.org/).
+This is a static blog generator and starter gatsby repo. A port of [Casper](https://github.com/TryGhost/Casper) v3 a theme from [Ghost](https://ghost.org/) for [GatsbyJS](https://www.gatsbyjs.org/) using [TypeScript](https://www.typescriptlang.org/).
 
 ## Getting Started
+
+Clone this repo.
+
+```
+git clone https://github.com/scttcper/gatsby-casper.git --depth=1
+```
+
+Remove .git folder and setup a new one
+
+```
+rm -rf .git && git init
+```
+
 Edit website-config.ts with your website settings.
 Either disable subscribe or setup a mailchimp list and add the form action and hidden field input name.
 
+Now push to whatever repo you want!
 
 ### Progress
+
 - [x] emotion / component styles
 - [x] home page
 - [x] tag page
@@ -23,23 +38,22 @@ Either disable subscribe or setup a mailchimp list and add the form action and h
 - [x] blog page
   - [x] subscribe form - using [mailchimp](https://mailchimp.com)
   - [ ] full width images in markdown? - not sure if possible
-  - [ ] multiple post authors
-  - [ ] floating reading progress bar
+  - [x] multiple post authors
 - [x] 404 page
 - [x] subscribe modal/overlay
-- [x] rss feed
-- [x] polish ✨
+- [x] rss feed (on production build)
+- [ ] polish ✨
   - [x] meta tags
   - [x] page titles
-
+  - [ ] pagination
 
 ### Deploy to Netlify
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/scttcper/gatsby-casper)
 
 ## How to configure Google Analytics
-Edit `gatsby-config.js` and add your tracking ID
 
+Edit `gatsby-config.js` and add your tracking ID
 
 ```javascript
 {
@@ -60,10 +74,11 @@ Edit `gatsby-config.js` and add your tracking ID
       // Determines how often site speed tracking beacons will be sent
       siteSpeedSampleRate: 10,
     },
-  },
+},
 ```
 
-## How to edit your site title and description 
+## How to edit your site title and description
+
 Edit `gatsby-config.js` section `siteMetadata`
 
 ```javascript
@@ -73,3 +88,8 @@ Edit `gatsby-config.js` section `siteMetadata`
     siteUrl: 'https://mysite.com', // full path to blog - no ending slash
   },
 ```
+
+## How to adjust pagination
+
+In `gatsby-node.js`, edit the `postsPerPage` constant. The default value is
+six posts per page.

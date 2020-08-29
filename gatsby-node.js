@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands, @typescript-eslint/no-var-requires */
 const path = require('path');
 const _ = require('lodash');
 
@@ -8,6 +9,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // interpreter if not a single content uses it. Therefore, we're putting them
   // through `createNodeField` so that the fields still exist and GraphQL won't
   // trip up. An empty string is still required in replacement to `null`.
+  // eslint-disable-next-line default-case
   switch (node.internal.type) {
     case 'MarkdownRemark': {
       const { permalink, layout, primaryTag } = node.frontmatter;
@@ -61,6 +63,7 @@ exports.createPages = async ({ graphql, actions }) => {
               tags
               date
               draft
+              excerpt
               image {
                 childImageSharp {
                   fluid(maxWidth: 3720) {
@@ -78,8 +81,12 @@ exports.createPages = async ({ graphql, actions }) => {
                 avatar {
                   children {
                     ... on ImageSharp {
-                      fixed(quality: 90) {
+                      fluid(quality: 100) {
+                        aspectRatio
+                        base64
+                        sizes
                         src
+                        srcSet
                       }
                     }
                   }
@@ -110,6 +117,25 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create post pages
   const posts = result.data.allMarkdownRemark.edges;
+
+  // Create paginated index
+  // TODO: new pagination
+  const postsPerPage = 1000;
+  const numPages = Math.ceil(posts.length / postsPerPage);
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? '/' : `/${i + 1}`,
+      component: path.resolve('./src/templates/index.tsx'),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    });
+  });
+
   posts.forEach(({ node }, index) => {
     const { slug, layout } = node.fields;
     const prev = index === 0 ? null : posts[index - 1].node;
@@ -171,7 +197,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   // adds sourcemaps for tsx in dev mode
-  if (stage === `develop` || stage === `develop-html`) {
+  if (stage === 'develop' || stage === 'develop-html') {
     actions.setWebpackConfig({
       devtool: 'eval-source-map',
     });
